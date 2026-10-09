@@ -277,6 +277,7 @@ function home() {
       <figure class="mph"><div class="mph-in"><img src="/assets/img/member-hug.webp" alt="Two participants hugging after a Sanctum class at sunset" loading="lazy" width="1100" height="1100"><figcaption>Because it feels better <em>together.</em></figcaption></div></figure>
       <figure class="mph"><div class="mph-in"><img src="/assets/img/member-feel.webp" alt="A participant moved to tears, hand on heart, during a Sanctum class" loading="lazy" width="1100" height="1100"><figcaption>Stay for the <em>feeling.</em></figcaption></div></figure>
     </div>
+    <div class="cdots mdots"><button type="button" aria-label="Photo 1"></button><button type="button" aria-label="Photo 2"></button><button type="button" aria-label="Photo 3"></button></div>
     <div class="msec-cta reveal"><a class="btn btn-primary" href="/memberships/">Discover memberships ${arr}</a></div>
   </div>
   </div>

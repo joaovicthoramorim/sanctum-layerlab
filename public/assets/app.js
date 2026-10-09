@@ -144,6 +144,16 @@
     wcar.addEventListener('scroll', sync, { passive: true }); sync();
   }
 
+  /* ---------- carousel dots: follow the swipe, tap to jump ---------- */
+  const bindDots = (track, dots) => {
+    if (!track || !dots.length) return;
+    const sync = () => { const c = track.scrollLeft + track.clientWidth / 2; let best = 0, d = 1e9; [...track.children].forEach((el, k) => { const m = el.offsetLeft + el.offsetWidth / 2; if (Math.abs(m - c) < d) { d = Math.abs(m - c); best = k; } }); dots.forEach((x, k) => x.classList.toggle('on', k === best)); };
+    dots.forEach((x, k) => x.addEventListener('click', () => { const el = track.children[k]; if (el) track.scrollTo({ left: el.offsetLeft - (track.clientWidth - el.offsetWidth) / 2, behavior: 'smooth' }); }));
+    track.addEventListener('scroll', sync, { passive: true }); sync();
+  };
+  bindDots(document.querySelector('.mtrip'), [...document.querySelectorAll('.mdots button')]);
+  bindDots(wcar, [...document.querySelectorAll('.wcar-dots i')]);
+
   /* ---------- mobile cities: cards fly in from the depth and form the gallery ---------- */
   if (wcar && window.gsap && window.ScrollTrigger && !RM && innerWidth <= 900) {
     const sec = wcar.closest('.wcar'); sec.classList.add('wcar-fx');
