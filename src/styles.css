@@ -983,3 +983,4 @@ html.apop-open{overflow:hidden}
 @media (max-width:900px){.ftr{padding-top:40px}.ftr .grid{grid-template-columns:1fr!important;gap:20px}.ftr .grid>div:first-child{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}.ftr .tag{margin-top:0;font-size:1.05rem;max-width:none}.ftr h2{margin-bottom:8px}.ftr ul{display:flex;flex-wrap:wrap;gap:6px 16px}.ftr a{font-size:.8rem}.ftr .base{margin-top:24px;flex-direction:column}}
 @media (max-width:768px){.ftr{padding-bottom:96px}}
 html{overflow-x:hidden;max-width:100%}body{position:relative;max-width:100%}.pexp,.pfeat,.pben,.mtrip,.wcar-track,.guides-grid,.comm-notes,.drawer{overscroll-behavior-x:contain}
+@media (max-width:900px){.dphones .ds-live{top:-15%;z-index:6}.dphones{margin-top:44px}}
