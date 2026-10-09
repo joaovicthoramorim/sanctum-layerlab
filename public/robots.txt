@@ -1,0 +1,22 @@
+# PROTOTYPE — private concept by LAYER LAB. Do not index.
+User-agent: *
+Disallow: /
+
+# Production version (switch config.prototype=false):
+# User-agent: *
+# Allow: /
+# User-agent: Googlebot
+# User-agent: Google-Extended
+# User-agent: Bingbot
+# User-agent: GPTBot
+# User-agent: OAI-SearchBot
+# User-agent: ChatGPT-User
+# User-agent: ClaudeBot
+# User-agent: Claude-User
+# User-agent: Claude-SearchBot
+# User-agent: PerplexityBot
+# User-agent: Perplexity-User
+# User-agent: Applebot
+# User-agent: Applebot-Extended
+# Allow: /
+# Sitemap: https://www.wearesanctum.com/sitemap.xml

@@ -1,0 +1,10 @@
+# Sanctum — website concept by LAYER LAB
+# Static site: the built pages live in /public. No build step on Netlify.
+[build]
+  publish = "public"
+  command = ""
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
