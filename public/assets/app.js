@@ -266,8 +266,11 @@
   const N = +(mobile ? journey.dataset.framesM : journey.dataset.framesD);
   const conn = navigator.connection || {};
   const slow = conn.saveData || /(^|-)2g|3g/.test(conn.effectiveType || '');
-  const dir = mobile ? 'm' : (!slow && window.innerWidth * Math.min(window.devicePixelRatio || 1, 2) > 1700 ? 'hd' : 'd');
-  const src = (i) => `/assets/seq/${dir}/${String(i + 1).padStart(4, '0')}.webp`;
+  const REAL = /[?&]hero=real\b/.test(location.search);
+  const dir = mobile ? 'm' : (!REAL && !slow && window.innerWidth * Math.min(window.devicePixelRatio || 1, 2) > 1700 ? 'hd' : 'd');
+  const seqBase = REAL ? 'seq-real' : 'seq';
+  const src = (i) => `/assets/${seqBase}/${dir}/${String(i + 1).padStart(4, '0')}.webp`;
+  if (REAL) { const pic = journey.querySelector('picture'); if (pic) { pic.querySelector('source').srcset = src(0).replace('/d/', '/m/'); pic.querySelector('img').src = src(0).replace('/m/', '/d/'); } journey.querySelectorAll('.chap[data-poster]').forEach((c) => { c.dataset.poster = ''; }); }
   const frames = new Array(N);
   const loaded = new Uint8Array(N);
   let current = 0, progress = 0, needsDraw = true, loadedCount = 0;
