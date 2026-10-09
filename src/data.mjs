@@ -73,7 +73,7 @@ export const cities = [
       { name: 'Full Moon in Taurus Special', venue: 'SIRO, One Za’abeel', date: '25 October 2026', time: '10:00', iso: '2026-10-25T10:00', text: 'Stillness, self-worth and releasing the need for more.', url: 'https://www.wearesanctum.com/event/dubai/full-moon-special' },
     ],
     guides: ['Luuk', 'Kaya', 'Phoebe', 'Joanne', 'Elisabeth', 'Daria', 'Soniya'],
-    reviews: [T('If you feel stuck — go to Sanctum. Whatever you feel, just go to Sanctum.')],
+    reviews: [T('If you feel stuck, go to Sanctum. Whatever you feel, just go to Sanctum.')],
   },
   {
     slug: 'stockholm', name: 'Stockholm', code: 'STO', country: 'Sweden',
@@ -90,8 +90,8 @@ export const cities = [
     img: 'church', intro: 'Monday nights beneath the Byzantine domes of St Bartholomew’s Church, Manhattan.',
     venues: ['St Bartholomew’s Church, Manhattan', 'Lightning Society, Broadway', 'Othership, Flatiron'],
     events: [
-      { name: 'St Bart’s · Mondays', venue: 'St Bartholomew’s Church, Manhattan', date: 'Mondays from 3 August 2026', time: '18:30', iso: '2026-10-12T18:30', text: 'A musical moving meditation — the Sanctum Signature Sequence — combining breathwork, movement and primal exercise beneath Byzantine domes.', url: 'https://www.wearesanctum.com/event/new-york/st-barts' },
-      { name: 'Othership Special', venue: 'Othership, Flatiron', date: '[A CONFIRMAR] dates', time: '', iso: '', text: 'A Sanctum session before Othership’s “Guided Up: Feel Good Now” — movement, heat, cold and breath.', url: 'https://www.wearesanctum.com/event/new-york/othership-nyc' },
+      { name: 'St Bart’s · Mondays', venue: 'St Bartholomew’s Church, Manhattan', date: 'Mondays from 3 August 2026', time: '18:30', iso: '2026-10-12T18:30', text: 'A musical moving meditation, the Sanctum Signature Sequence, combining breathwork, movement and primal exercise beneath Byzantine domes.', url: 'https://www.wearesanctum.com/event/new-york/st-barts' },
+      { name: 'Othership Special', venue: 'Othership, Flatiron', date: '[A CONFIRMAR] dates', time: '', iso: '', text: 'A Sanctum session before Othership’s “Guided Up: Feel Good Now”: movement, heat, cold and breath.', url: 'https://www.wearesanctum.com/event/new-york/othership-nyc' },
     ],
     guides: [],
     reviews: [],
@@ -115,7 +115,7 @@ export const membership = {
 export const digital = {
   title: 'Take a class anytime, anywhere.',
   lead: 'The first fully immersive digital platform blending sound, movement, mindfulness and spectacular locations.',
-  features: ['Founder-led and master-guide experiences', 'Iconic locations + cinematic soundscapes', 'Audio-led journeys — no screen needed', 'New experiences every week'],
+  features: ['Founder-led and master-guide experiences', 'Iconic locations + cinematic soundscapes', 'Audio-led journeys, no screen needed', 'New experiences every week'],
   categories: ['Morning energizers', 'Daily meditations', 'Nature walks', 'Signature Sequence'],
 };
 
@@ -124,9 +124,9 @@ export const privateBookings = {
   lead: 'Private Sanctum sessions for groups, teams and communities looking for a deeper, more visceral form of connection.',
   offers: [
     { name: 'Signature Sequence', dur: '60 min', tag: 'Unstuck, amplify potential, and spark transformation.', text: 'A cathartic, mindful movement experience designed to empower the body and expand the mind.', body: ['Our 60 minute Signature Sequence is a cathartic, mindful movement experience designed to empower the body and expand the mind.', 'Participants are guided to their physical, emotional and mental edge, unlocking new levels of focus, creativity and self-awareness within a shared, energising atmosphere.'], img: '/assets/img/pb-signature.webp' },
-    { name: 'Focus Energiser', dur: '10–20 min', tag: 'Reignite energy, focus and creativity — anywhere, anytime.', text: 'A condensed, high-impact version of the Sanctum class for offices and conference main stages.', body: ['Perfect for a Friday morning, a mid-day office boost, or as a main stage experience at conferences, this 10–20 minute session is a condensed, high-impact version of the Sanctum class.', 'Designed to reconnect participants, spark creativity and energise teams efficiently, wherever they are. Maximum impact in minimal time.'], img: 'https://cdn.prod.website-files.com/6924318a2ed5d4cd56895681/6943edcd54f07ef5dd060b64_focus.jpg' },
+    { name: 'Focus Energiser', dur: '10 to 20 min', tag: 'Reignite energy, focus and creativity, anywhere, anytime.', text: 'A condensed, high-impact version of the Sanctum class for offices and conference main stages.', body: ['Perfect for a Friday morning, a mid-day office boost, or as a main stage experience at conferences, this 10 to 20 minute session is a condensed, high-impact version of the Sanctum class.', 'Designed to reconnect participants, spark creativity and energise teams efficiently, wherever they are. Maximum impact in minimal time.'], img: 'https://cdn.prod.website-files.com/6924318a2ed5d4cd56895681/6943edcd54f07ef5dd060b64_focus.jpg' },
     { name: 'Mindful Nature Walk', dur: '120 min', tag: 'Reimagine connection within, between and beyond.', text: 'A curated mindful walk through natural landscapes with reflection stations and a Grande Finale.', body: ['One of our most iconic offerings: a 120 minute curated mindful walk through serene natural landscapes, integrating movement and reflection at curated stations along the journey.', 'Each station inspires introspection and connection, culminating in a breathtaking “Grande Finale” that leaves participants energised, aligned and inspired to lead with purpose.'], img: 'https://cdn.prod.website-files.com/6924318a2ed5d4cd56895681/6943edcd6ad7239439f5f9c5_nature-walk.jpg' },
-    { name: 'Bespoke Experience', dur: 'Tailored', tag: 'Designed around your intention.', text: 'Corporate activations, conferences and private celebrations, designed around your intention.', body: ['Each experience is tailored — from corporate activations and conferences to private celebrations — helping teams and friends bond, release and reset together.', 'Music-driven movement, breath and shared energy, in a venue and format built around your group and what you want them to feel.'], img: '/assets/img/pb-bespoke.webp' },
+    { name: 'Bespoke Experience', dur: 'Tailored', tag: 'Designed around your intention.', text: 'Corporate activations, conferences and private celebrations, designed around your intention.', body: ['Each experience is tailored, from corporate activations and conferences to private celebrations, helping teams and friends bond, release and reset together.', 'Music-driven movement, breath and shared energy, in a venue and format built around your group and what you want them to feel.'], img: '/assets/img/pb-bespoke.webp' },
   ],
 
   stats: [
@@ -140,7 +140,7 @@ export const privateBookings = {
     { name: 'Iain Stirling', role: 'International Portfolio Director, Mash Media Group', quote: 'The day began with a Morning Energiser by SANCTUM, the global mindful movement helping delegates find peace and perspective before diving into a packed agenda.' },
     { name: 'Mala Dorasamy', role: 'CEO, MITEC', quote: 'This morning at the ICCA Congress, I experienced a truly transformative session ‘Unlocking Eve: The Power of Two Experience’ by SANCTUM. It was unlike anything I’ve encountered before.' },
     { name: 'Guy Heywood', role: 'Professional Luxury Hotelier', quote: 'SANCTUM and their classes … are totally uplifting and fun, not to mention good for you.' },
-    { name: 'Ben Lephilibert', role: 'CEO, LightBlue & Co-Founder, The PLEDGE on Food Waste', quote: 'This morning started at 7am with an unexpected CEO meeting coached by mindful wellness experts SANCTUM – I cried twice.' },
+    { name: 'Ben Lephilibert', role: 'CEO, LightBlue & Co-Founder, The PLEDGE on Food Waste', quote: 'This morning started at 7am with an unexpected CEO meeting coached by mindful wellness experts SANCTUM. I cried twice.' },
   ],
   benefits: [
     ['Strengthens team cohesion and communication', 'https://cdn.prod.website-files.com/6924318a2ed5d4cd56895681/6937fd34ae756da162042084_image%2030.jpg'],
@@ -198,13 +198,13 @@ export const festival = {
 };
 
 export const retreats = [
-  { name: 'Crystal Wellness Cruise', place: 'Lisbon → Morocco → Spain', date: '11–17 October 2026', iso: '2026-10-11', text: 'A curated voyage through Portugal, Morocco and Spain focused on mental and physical health.', url: 'https://www.crystalcruises.com/cruises/none-cse-006-261011', img: 'https://cdn.prod.website-files.com/6924318a2ed5d4cd56895681/6a05e20b67d7b556134cb306_8b32565116d7a6e111fb8b9732f268176ebcc863-4449x2943-p-1600.webp', long: 'The wonders of Portugal, Morocco and Spain serve as a backdrop for this specially curated journey. Tune into your mental and physical health on this transformational voyage.' },
-  { name: 'Marbella Club Hotel', place: 'Marbella, Spain', date: '31 October – 1 November 2026', iso: '2026-10-31', text: 'Movement, breathwork and reconnection in Mediterranean gardens.', url: 'https://www.wearesanctum.com/event/international/marbella-club', img: 'https://cdn.prod.website-files.com/6924318a2ed5d4cd56895681/697b63a9062afdd7ec517b11_GLD_7390_LQ-p-1600.jpg', long: 'Join us at the iconic Marbella Club Hotel, where Mediterranean beauty, lush gardens and serene surroundings create the perfect setting to move, breathe and reconnect.' },
+  { name: 'Crystal Wellness Cruise', place: 'Lisbon → Morocco → Spain', date: '11 to 17 October 2026', iso: '2026-10-11', text: 'A curated voyage through Portugal, Morocco and Spain focused on mental and physical health.', url: 'https://www.crystalcruises.com/cruises/none-cse-006-261011', img: 'https://cdn.prod.website-files.com/6924318a2ed5d4cd56895681/6a05e20b67d7b556134cb306_8b32565116d7a6e111fb8b9732f268176ebcc863-4449x2943-p-1600.webp', long: 'The wonders of Portugal, Morocco and Spain serve as a backdrop for this specially curated journey. Tune into your mental and physical health on this transformational voyage.' },
+  { name: 'Marbella Club Hotel', place: 'Marbella, Spain', date: '31 October to 1 November 2026', iso: '2026-10-31', text: 'Movement, breathwork and reconnection in Mediterranean gardens.', url: 'https://www.wearesanctum.com/event/international/marbella-club', img: 'https://cdn.prod.website-files.com/6924318a2ed5d4cd56895681/697b63a9062afdd7ec517b11_GLD_7390_LQ-p-1600.jpg', long: 'Join us at the iconic Marbella Club Hotel, where Mediterranean beauty, lush gardens and serene surroundings create the perfect setting to move, breathe and reconnect.' },
   { name: 'Four Seasons Geneva', place: 'Geneva, Switzerland', date: '7 October 2026', iso: '2026-10-07', text: 'An exclusive wellness experience with Spa Mont-Blanc and Club des Bergues.', url: 'https://www.wearesanctum.com/event/international/four-seasons-geneva', img: 'https://cdn.prod.website-files.com/6924318a2ed5d4cd56895681/6a82e8da5a890f1415c3ac13_image.png', long: 'This October, Sanctum lands in Geneva for an exclusive wellness experience at the Four Seasons, organised in collaboration with Spa Mont-Blanc and Club des Bergues.' },
 ];
 
 export const about = {
-  lead: 'SANCTUM is an unmatched moving sequence to empower the body and expand the mind — designed to unlock human potential by guiding you to your physical edge and mindful euphoria within a single class.',
+  lead: 'SANCTUM is an unmatched moving sequence to empower the body and expand the mind, designed to unlock human potential by guiding you to your physical edge and mindful euphoria within a single class.',
   story: 'Founded in Amsterdam and led by founder Luuk Melisse and a collective of experienced Guides, Sanctum draws on kundalini, Zen Buddhism, qigong, somatic movement, HIIT and energy work. The body is the route to the mind: release stress, self-regulate, unblock.',
   purpose: 'To build a worldwide community of happiness and fulfilment through elevated consciousness and connection.',
   reach: ['Olympic stadiums', 'Urban studios in London, Amsterdam and Dubai', 'The World Economic Forum, Davos'],
@@ -215,7 +215,7 @@ export const faqs = [
   { q: 'How do I sign up for a class?', a: 'Choose your city, pick a class and buy the package you want. You will need a Sanctum account to complete the booking.' },
   { q: 'What is your cancellation policy?', a: 'You can cancel a reservation up to 12 hours before class. Cancelling inside that window means the credit is lost.' },
   { q: 'Can I join the waitlist when a class is full?', a: 'Yes. A waitlist button appears on full classes. You receive an email confirming your place and another one when a spot opens.' },
-  { q: 'I’m pregnant — can I join?', a: 'Yes. Take extra precautions, listen carefully to your body and let the crew know if you feel comfortable doing so.' },
+  { q: 'I’m pregnant. Can I join?', a: 'Yes. Take extra precautions, listen carefully to your body and let the crew know if you feel comfortable doing so.' },
   { q: 'Is there a minimum age?', a: 'There is no strict minimum, but we advise attendees to be 16 or older. Parents decide what is appropriate for their child.' },
   { q: 'How do I redeem a gift card?', a: 'Enter the unique code and PIN you received by email at checkout.' },
   { q: 'How long is my package valid?', a: 'Each package has its own expiry date, shown on the pricing page of your city.' },
