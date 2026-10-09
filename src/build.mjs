@@ -15,8 +15,8 @@ writeFileSync(join(OUT, 'assets', 'app.js'), appJs);
 writeFileSync(join(OUT, 'assets', 'arches.js'), readFileSync(join(SRC, 'arches.js'), 'utf8'));
 writeFileSync(join(OUT, 'assets', 'wave.js'), readFileSync(join(SRC, 'wave.js'), 'utf8'));
 
-const framesD = readdirSync(join(OUT, 'assets/seq/d')).filter((f) => f.endsWith('.webp')).length;
-const framesM = readdirSync(join(OUT, 'assets/seq/m')).filter((f) => f.endsWith('.webp')).length;
+const framesD = readdirSync(join(OUT, 'assets/seq-real/d')).filter((f) => f.endsWith('.webp')).length;
+const framesM = readdirSync(join(OUT, 'assets/seq-real/m')).filter((f) => f.endsWith('.webp')).length;
 
 const e = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const abs = (p) => C.domain.replace(/\/$/, '') + p;
@@ -54,7 +54,7 @@ function layout({ path, title, desc, body, schema = [], image = '/assets/img/og.
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23070605'/%3E%3Ctext x='16' y='23' font-family='Georgia' font-size='20' text-anchor='middle' fill='%23f3ece2'%3ES%3C/text%3E%3Ccircle cx='25' cy='8' r='3' fill='%233f7bff'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://cdn.prod.website-files.com" crossorigin><link rel="preload" as="font" type="font/otf" href="https://cdn.prod.website-files.com/6924318a2ed5d4cd56895681/6924318a2ed5d4cd56895807_RoxboroughCF-Regular.otf" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-${path === '/' ? '<link rel="preload" as="image" href="/assets/seq/d/0001.webp" media="(min-width:769px)" fetchpriority="high"><link rel="preload" as="image" href="/assets/seq/m/0001.webp" media="(max-width:768px)" fetchpriority="high">' : ''}
+${path === '/' ? '<link rel="preload" as="image" href="/assets/seq-real/d/0001.webp" media="(min-width:769px)" fetchpriority="high"><link rel="preload" as="image" href="/assets/seq-real/m/0001.webp" media="(max-width:768px)" fetchpriority="high">' : ''}
 <style>${css}</style>
 <script>document.documentElement.classList.remove('no-js')</script>
 ${schema.map((s) => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n')}
@@ -203,7 +203,7 @@ function home() {
     text: [[0, 0.13], [0.24, 0.355], [0.43, 0.56], [0.625, 0.75], [0.84, 0.97]],
     wave: [[0.25, 0.5], [1, 1.7], [0.45, 0.35], [0.1, 0.2], [0.85, 1.2]],
   };
-  const posters = ['/assets/img/poster-3.webp', '/assets/img/poster-12.webp', '/assets/img/poster-19.webp', '/assets/img/poster-26.webp', '/assets/img/poster-36.webp'];
+  const posters = [1, 2, 3, 4, 5].map((n) => `/assets/img/hreal-${n}.webp`);
   const J = D.journey;
   const chap = (c, k) => {
     if (k === 0) return `<div class="chap" data-poster="${posters[k]}"><h1><span class="h1k">SANCTUM · Mindful movement classes in London, Amsterdam, Dubai, Stockholm &amp; New York</span><span class="display">${e(c.title)}</span></h1><p>${e(c.text)}</p><div class="ctas"><a class="btn btn-primary" href="/classes/">Book a class ${arr}</a><a class="btn btn-ghost" href="#film">Watch the film</a></div></div>`;
@@ -213,7 +213,7 @@ function home() {
   const body = `
 <section class="journey" aria-label="The 55-minute Sanctum journey" data-frames-d="${framesD}" data-frames-m="${framesM}" data-windows='${JSON.stringify(W)}'>
   <div class="stage">
-    <picture><source media="(max-width:768px)" srcset="/assets/seq/m/0001.webp"><img class="poster" src="/assets/seq/d/0001.webp" alt="" aria-hidden="true" fetchpriority="high" width="1600" height="900"></picture>
+    <picture><source media="(max-width:768px)" srcset="/assets/seq-real/m/0001.webp"><img class="poster" src="/assets/seq-real/d/0001.webp" alt="" aria-hidden="true" fetchpriority="high" width="1600" height="900"></picture>
     <canvas class="seq" aria-hidden="true"></canvas>
     <div class="shade"></div>
     <canvas class="wave" aria-hidden="true"></canvas>

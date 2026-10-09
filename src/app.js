@@ -266,7 +266,7 @@
   const N = +(mobile ? journey.dataset.framesM : journey.dataset.framesD);
   const conn = navigator.connection || {};
   const slow = conn.saveData || /(^|-)2g|3g/.test(conn.effectiveType || '');
-  const REAL = /[?&]hero=real\b/.test(location.search);
+  const REAL = !/[?&]hero=ai\b/.test(location.search);
   const dir = mobile ? 'm' : (!REAL && !slow && window.innerWidth * Math.min(window.devicePixelRatio || 1, 2) > 1700 ? 'hd' : 'd');
   const seqBase = REAL ? 'seq-real' : 'seq';
   const src = (i) => `/assets/${seqBase}/${dir}/${String(i + 1).padStart(4, '0')}.webp`;
