@@ -932,3 +932,4 @@ a.prs:hover .prs-img img{transform:scale(1.05);filter:none}
   .pf{flex:0 0 84vw;scroll-snap-align:center;grid-template-columns:1fr!important}
   .pf-media{min-height:220px}
 }
+@media (max-width:900px){.preel{display:flex;flex-direction:column;align-items:stretch;gap:0}.preel>div:not(.preel-v){display:contents}.preel>div:not(.preel-v)>.kicker{order:1}.preel>div:not(.preel-v)>h2{order:2}.preel>div:not(.preel-v)>.lead{order:3}.preel-v{order:4;margin:34px auto 0}.preel .pquote{order:5}.preel>div:not(.preel-v)>div{order:6}}
