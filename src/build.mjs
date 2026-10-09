@@ -81,7 +81,7 @@ ${schema.map((s) => `<script type="application/ld+json">${JSON.stringify(s)}</sc
       <p class="kicker">Book a class</p>
       <ul>${D.cities.map((c) => `<li><a href="/classes/${c.slug}/">${c.name}</a></li>`).join('')}<li><a href="/events-retreats/">Global events</a></li></ul>
       <p class="kicker" style="margin-top:36px">Connect</p>
-      <ul><li><a href="${C.social.instagram}" ${ext}>Instagram</a></li><li><a href="${C.social.spotify}" ${ext}>Spotify</a></li><li><a href="${C.social.linkedin}" ${ext}>LinkedIn</a></li></ul>
+      <ul><li><a href="${C.social.instagram}" ${ext}>Instagram</a></li><li><a href="${C.social.spotify}" ${ext}>Spotify</a></li><li><a href="${C.social.linkedin}" ${ext}>LinkedIn</a></li><li><a href="mailto:hello@wearesanctum.com">hello@wearesanctum.com</a></li></ul>
       <a class="btn btn-primary" style="margin-top:36px" href="/classes/">Book your first class ${arr}</a>
     </div>
   </div>
@@ -111,11 +111,11 @@ function footer() {
     </div>
     <div><h2>Classes</h2><ul>${D.cities.map((c) => `<li><a href="/classes/${c.slug}/">${c.name}</a></li>`).join('')}<li><a href="/events-retreats/">Global events</a></li></ul></div>
     <div><h2>Experience</h2><ul><li><a href="/memberships/">Membership</a></li><li><a href="/digital/">Sanctum Digital</a></li><li><a href="/private-bookings/">Private bookings</a></li><li><a href="/frequency-festival/">Frequency Festival</a></li><li><a href="/about/">About</a></li></ul></div>
-    <div><h2>Sanctum</h2><ul><li><a href="/press/">Press</a></li><li><a href="/careers/">Careers</a></li><li><a href="/academy/">Academy</a></li><li><a href="/faq/">FAQs</a></li><li><a href="/terms/">T&amp;Cs</a></li><li><a href="/privacy/">Privacy policy</a></li></ul></div>
+    <div><h2>Sanctum</h2><ul><li><a href="/press/">Press</a></li><li><a href="/careers/">Careers</a></li><li><a href="/academy/">Academy</a></li><li><a href="/faq/">FAQs</a></li><li><a href="mailto:hello@wearesanctum.com">Contact</a></li><li><a href="/terms/">T&amp;Cs</a></li><li><a href="/privacy/">Privacy policy</a></li></ul></div>
     <div><h2>Connect</h2><ul><li><a href="${C.social.instagram}" ${ext}>Instagram</a></li><li><a href="${C.social.spotify}" ${ext}>Spotify</a></li><li><a href="${C.social.linkedin}" ${ext}>LinkedIn</a></li><li><a href="${C.appStore}" ${ext}>App Store</a></li><li><a href="${C.playStore}" ${ext}>Google Play</a></li></ul></div>
   </div>
   <div class="base">
-    <span>© SANCTUM. Brand assets © SANCTUM, used for presentation purposes only.</span>
+    <span>© SANCTUM · <a href="mailto:hello@wearesanctum.com">hello@wearesanctum.com</a> · Brand assets © SANCTUM, used for presentation purposes only.</span>
     <span>Concept by <a href="${C.layerlab}" ${ext}>LAYER LAB</a> · Some scenes generated with AI.</span>
   </div>
 </div>
@@ -258,6 +258,11 @@ function home() {
     <div class="wave-portals" aria-hidden="true">${TOUR.map((s) => `<div class="wp"><img src="/assets/img/${ARCHIMG[s]}.webp" alt="" loading="lazy"></div>`).join('')}</div>
     <div class="wave-infos">${TOUR.map((s) => { const c = D.cities.find((x) => x.slug === s); const g = GEO[s]; const n = nextEvent(c); return `<div class="ainfo"><span class="code">${c.code} · <span data-tz="${g[2]}">--:--</span> local time</span><h3>${c.name}</h3><p class="where">${e(c.intro)}</p><p class="nx"><b>Next</b>${e(n.name)} · ${e(n.date)}</p><a class="btn btn-primary" href="/classes/${c.slug}/">View classes ${arr}</a></div>`; }).join('')}</div>
   </div>
+</section>
+<section class="wcar" aria-label="Choose your city">
+  <div class="wrap"><p class="kicker"><span class="dot"></span>Choose your city</p></div>
+  <div class="wcar-track">${TOUR.map((s) => { const c = D.cities.find((x) => x.slug === s); const n = nextEvent(c); return `<a class="city wcar-card" href="/classes/${c.slug}/"><img src="/assets/img/${ARCHIMG[s]}.webp" alt="" loading="lazy"><span class="code">${c.code}</span><h3>${c.name}</h3><p class="next"><b>Next</b>${e(n.name)} · ${e(n.date)}</p><span class="go">View classes →</span></a>`; }).join('')}</div>
+  <div class="wcar-dots" aria-hidden="true">${TOUR.map(() => '<i></i>').join('')}</div>
 </section>
 
 <section class="sec msec light" id="membership">

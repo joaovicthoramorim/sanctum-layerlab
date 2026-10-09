@@ -135,6 +135,15 @@
     gsap.fromTo(hf.querySelector('.hf-inset'), { y: 80, rotation: -6 }, { y: -40, rotation: -2, ease: 'none', scrollTrigger: { ...st } });
   }
 
+
+  /* ---------- mobile city carousel dots ---------- */
+  const wcar = document.querySelector('.wcar-track');
+  if (wcar) {
+    const dots = [...document.querySelectorAll('.wcar-dots i')];
+    const sync = () => { const cards = [...wcar.children]; const c = wcar.scrollLeft + wcar.clientWidth / 2; let best = 0, d = 1e9; cards.forEach((el, k) => { const m = el.offsetLeft + el.offsetWidth / 2; if (Math.abs(m - c) < d) { d = Math.abs(m - c); best = k; } }); dots.forEach((x, k) => x.classList.toggle('on', k === best)); };
+    wcar.addEventListener('scroll', sync, { passive: true }); sync();
+  }
+
   /* ---------- sand curtain: rounded sand sections rise over the dark ---------- */
   if (window.gsap && window.ScrollTrigger && !RM) {
     document.querySelectorAll('.light').forEach((el) => {
@@ -202,7 +211,7 @@
 
   /* ---------- membership triptych: stacked photos fan out ---------- */
   const trip = document.querySelector('.mtrip');
-  if (trip && window.gsap && window.ScrollTrigger && !RM) {
+  if (trip && window.gsap && window.ScrollTrigger && !RM && window.innerWidth > 900) {
     const ph = [...trip.querySelectorAll('.mph')];
     const spread = () => trip.clientWidth * (window.innerWidth > 900 ? 0.34 : 0.33);
     const rot = [-6, 3, 7], stackRot = [-8, 2, 9];

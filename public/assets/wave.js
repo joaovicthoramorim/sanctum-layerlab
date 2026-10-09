@@ -36,7 +36,7 @@
   size();
   window.addEventListener('resize', size);
 
-  const P_IN = 0.07, P_END = 0.97, SEG = (P_END - P_IN) / N;
+  const P_IN = 0.035, P_END = 0.97, SEG = (P_END - P_IN) / N;
   let progress = 0;
   const update = () => { const r = sec.getBoundingClientRect(); progress = clamp(-r.top / (r.height - window.innerHeight), 0, 1); };
 
@@ -83,7 +83,7 @@
 
   function render(now) {
     const p = progress, t = now / 1000;
-    const draw = ease(clamp(p / P_IN, 0, 1));
+    const draw = 0.4 + 0.6 * ease(clamp(p / P_IN, 0, 1));
     let idx = -1, open = 0, dock = 0, cursor = 0, beat = 0, local = 0;
     if (p <= P_IN) cursor = 0;
     else if (p >= P_END) cursor = 1;
@@ -119,7 +119,7 @@
         const S = { x: lerp(mx - 1.5, 0, hp), y: cyy - hh / 2, w: lerp(3, W, hp), h: hh };
         R = dock > 0 ? { x: lerp(S.x, B.x, dock), y: lerp(S.y, B.y, dock), w: lerp(S.w, B.w, dock), h: lerp(S.h, B.h, dock) } : S;
       }
-      if (!R) { pw.style.visibility = 'hidden'; pw.classList.remove('docked'); return; }
+      if (!R || (!wide && docked)) { pw.style.visibility = 'hidden'; pw.classList.remove('docked'); return; }
       pw.style.visibility = 'visible';
       pw.style.left = R.x + 'px'; pw.style.top = R.y + 'px'; pw.style.width = R.w + 'px'; pw.style.height = R.h + 'px';
       const sh = docked ? 0 : (k === idx ? fullness : 0);

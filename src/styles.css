@@ -892,3 +892,35 @@ a.prs:hover .prs-img img{transform:scale(1.05);filter:none}
 :not(.light) + section.light{padding-top:clamp(110px,12vw,170px)!important}
 .film-logo{top:68%}
 @media (max-width:768px){.film-logo{top:55%}}
+
+/* ===== mobile + desktop fixes ===== */
+/* 1. cities on mobile: no tiny docked cards; swipe carousel after the wave */
+.wcar{display:none}
+@media (max-width:900px){
+  .wave-on .wmark{display:none}
+  .wcar{display:block;padding:clamp(56px,14vw,90px) 0 clamp(56px,12vw,80px)}
+  .wcar-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:22px 16px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .wcar-track::-webkit-scrollbar{display:none}
+  .wcar-card{flex:0 0 78vw;scroll-snap-align:center;min-height:440px}
+  .wcar-dots{display:flex;justify-content:center;gap:8px;margin-top:18px}
+  .wcar-dots i{width:6px;height:6px;border-radius:50%;background:rgba(243,236,226,.25);transition:background .3s,width .3s}
+  .wcar-dots i.on{background:var(--blue-glow);width:20px;border-radius:6px}
+  .wave-on{height:520vh}
+}
+/* 2. header button on one line */
+.hdr .btn{white-space:nowrap}
+@media (max-width:640px){.hdr .btn-outline{padding:9px 12px;font-size:.58rem;letter-spacing:.1em}}
+@media (max-width:360px){.hdr .btn-outline{padding:8px 10px;font-size:.54rem}}
+/* 3. mobile bar never covers the footer */
+@media (max-width:768px){.ftr{padding-bottom:110px}}
+/* 4. desktop: shorter run-in to the first city */
+@media (min-width:901px){.wave-on{height:600vh}}
+/* 6. membership photos on mobile: swipeable, big and readable */
+@media (max-width:900px){
+  .mtrip{height:auto!important;display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:36px -16px 28px;padding:10px 16px 18px;scrollbar-width:none}
+  .mtrip::-webkit-scrollbar{display:none}
+  .mph{position:relative!important;left:auto!important;top:auto!important;transform:none!important;flex:0 0 76vw;width:auto!important;scroll-snap-align:center}
+  .mph-in{border-radius:18px}
+  .mph-in::after{background:linear-gradient(0deg,rgba(7,6,5,.85),transparent 55%)}
+  .mph figcaption{left:18px!important;right:18px!important;bottom:18px!important;font-size:1.45rem!important;line-height:1.1}
+}
