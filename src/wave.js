@@ -1,7 +1,7 @@
 /* SANCTUM — "Frequency": one sound wave that opens into each city (LAYER LAB concept). */
 (() => {
   const sec = document.querySelector('.wave-sec');
-  if (!sec) return;
+  if (!sec || window.matchMedia('(max-width:900px)').matches) return;
   const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const stage = sec.querySelector('.wave-stage');
   const cv = sec.querySelector('canvas.wave-cv');

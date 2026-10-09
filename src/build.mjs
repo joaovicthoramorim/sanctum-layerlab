@@ -259,11 +259,11 @@ function home() {
     <div class="wave-infos">${TOUR.map((s) => { const c = D.cities.find((x) => x.slug === s); const g = GEO[s]; const n = nextEvent(c); return `<div class="ainfo"><span class="code">${c.code} · <span data-tz="${g[2]}">--:--</span> local time</span><h3>${c.name}</h3><p class="where">${e(c.intro)}</p><p class="nx"><b>Next</b>${e(n.name)} · ${e(n.date)}</p><a class="btn btn-primary" href="/classes/${c.slug}/">View classes ${arr}</a></div>`; }).join('')}</div>
   </div>
 </section>
-<section class="wcar" aria-label="Choose your city">
-  <div class="wrap"><p class="kicker"><span class="dot"></span>Choose your city</p></div>
+<section class="wcar" aria-labelledby="wcar-h"><div class="wcar-stick">
+  <div class="wrap wcar-head"><p class="kicker"><span class="dot"></span>Find your Sanctum</p><h2 id="wcar-h">Five cities. <em>One ritual.</em></h2><p class="lead">One frequency, playing around the world.</p></div>
   <div class="wcar-track">${TOUR.map((s) => { const c = D.cities.find((x) => x.slug === s); const n = nextEvent(c); return `<a class="city wcar-card" href="/classes/${c.slug}/"><img src="/assets/img/${ARCHIMG[s]}.webp" alt="" loading="lazy"><span class="code">${c.code}</span><h3>${c.name}</h3><p class="next"><b>Next</b>${e(n.name)} · ${e(n.date)}</p><span class="go">View classes →</span></a>`; }).join('')}</div>
   <div class="wcar-dots" aria-hidden="true">${TOUR.map(() => '<i></i>').join('')}</div>
-</section>
+</div></section>
 
 <section class="sec msec light" id="membership">
   <div class="wrap">

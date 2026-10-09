@@ -144,6 +144,19 @@
     wcar.addEventListener('scroll', sync, { passive: true }); sync();
   }
 
+  /* ---------- mobile cities: cards fly in from the depth and form the gallery ---------- */
+  if (wcar && window.gsap && window.ScrollTrigger && !RM && innerWidth <= 900) {
+    const sec = wcar.closest('.wcar'); sec.classList.add('wcar-fx');
+    const cards = [...wcar.children];
+    cards.forEach((c, k) => { c.style.zIndex = cards.length - k; });
+    const dx = (el) => wcar.clientWidth / 2 - (el.offsetLeft + el.offsetWidth / 2);
+    gsap.timeline({ scrollTrigger: { trigger: sec, start: 'top top', end: 'bottom bottom', scrub: 0.7, invalidateOnRefresh: true } })
+      .fromTo(sec.querySelector('.wcar-head'), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.25, ease: 'power2.out' }, 0)
+      .fromTo(cards, { x: (i, el) => dx(el), y: (i) => 40 + i * 14, scale: (i) => 0.28 + i * 0.03, opacity: 0, filter: 'blur(10px) brightness(.5)' },
+        { x: 0, y: 0, scale: 1, opacity: 1, filter: 'blur(0px) brightness(1)', duration: 0.7, stagger: 0.09, ease: 'power3.out' }, 0.08)
+      .fromTo(sec.querySelector('.wcar-dots'), { opacity: 0 }, { opacity: 1, duration: 0.15 }, '>-0.15');
+  }
+
   /* ---------- sand curtain: rounded sand sections rise over the dark ---------- */
   if (window.gsap && window.ScrollTrigger && !RM) {
     document.querySelectorAll('.light').forEach((el) => {
