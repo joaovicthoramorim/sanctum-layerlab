@@ -3,8 +3,8 @@
 
 export const config = {
   brand: 'SANCTUM',
-  // Final domain unknown for the concept — change in one place.
-  domain: 'https://www.wearesanctum.com',
+  // Site domain (single source): change in one place.
+  domain: 'https://sanctumproject.netlify.app',
   prototype: true, // adds noindex,nofollow everywhere + blocks crawlers in robots.txt
   booking: 'https://www.wearesanctum.com/daily-classes',
   appStore: 'https://apps.apple.com/app/id6757913161',
