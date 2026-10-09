@@ -154,19 +154,21 @@
   bindDots(document.querySelector('.mtrip'), [...document.querySelectorAll('.mdots button')]);
   bindDots(wcar, [...document.querySelectorAll('.wcar-dots i')]);
 
-  /* ---------- mobile cities: cards fly in from the depth and form the gallery ---------- */
+  /* ---------- mobile cities: one scroll in — cards fly from the depth and settle into the gallery ---------- */
   if (wcar && window.gsap && window.ScrollTrigger && !RM && innerWidth <= 900) {
-    const sec = wcar.closest('.wcar'); sec.classList.add('wcar-fx');
+    const sec = wcar.closest('.wcar');
     const cards = [...wcar.children];
-    
     const dx = (el) => wcar.clientWidth / 2 - (el.offsetLeft + el.offsetWidth / 2);
     sec.classList.add('wcar-lock');
-    gsap.timeline({ scrollTrigger: { trigger: sec, start: 'top top', end: 'bottom bottom', scrub: 0.5, invalidateOnRefresh: true, onUpdate: (st) => sec.classList.toggle('wcar-lock', st.progress < 0.62) } })
-      .fromTo(sec.querySelector('.wcar-head'), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.25, ease: 'power2.out' }, 0)
-      .fromTo(cards, { x: (i, el) => dx(el), y: (i) => 40 + i * 14, scale: (i) => 0.28 + i * 0.03, opacity: 0 },
-        { x: 0, y: 0, scale: 1, opacity: 1, duration: 0.32, stagger: 0.05, ease: 'power3.out' }, 0.06)
-      .fromTo(sec.querySelector('.wcar-dots'), { opacity: 0 }, { opacity: 1, duration: 0.08 }, '>-0.05')
-      .to({}, { duration: 0.4 });
+    gsap.set(sec.querySelector('.wcar-head'), { opacity: 0, y: 30 });
+    gsap.set(cards, { x: (i, el) => dx(el), y: (i) => 50 + i * 14, scale: (i) => 0.3 + i * 0.03, opacity: 0 });
+    gsap.set(sec.querySelector('.wcar-dots'), { opacity: 0 });
+    ScrollTrigger.create({ trigger: sec, start: 'top 70%', once: true, onEnter: () => {
+      gsap.timeline({ onComplete: () => { sec.classList.remove('wcar-lock'); gsap.set(cards, { clearProps: 'transform,opacity' }); } })
+        .to(sec.querySelector('.wcar-head'), { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 0)
+        .to(cards, { x: 0, y: 0, scale: 1, opacity: 1, duration: 1.1, stagger: 0.09, ease: 'expo.out' }, 0.15)
+        .to(sec.querySelector('.wcar-dots'), { opacity: 1, duration: 0.4 }, '-=0.5');
+    } });
   }
 
   /* ---------- sand curtain: rounded sand sections rise over the dark ---------- */
@@ -402,4 +404,37 @@
     if (visible) { if (needsDraw) { draw(); needsDraw = false; } drawWave(t); }
     requestAnimationFrame(loop);
   })(0);
+})();
+
+/* ---------- cookie consent + app pop-up ---------- */
+(() => {
+  const get = (k) => { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } };
+  const put = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+  const ck = document.querySelector('.ck'), pop = document.querySelector('.apop');
+  window.sanctumConsent = get('sanctum-consent');
+  const showPop = (delay) => {
+    if (!pop || /thank-you/.test(location.pathname)) return;
+    const seen = get('sanctum-apop');
+    if (seen && Date.now() - seen < 7 * 864e5) return;
+    setTimeout(() => {
+      pop.hidden = false; requestAnimationFrame(() => pop.classList.add('on'));
+      document.documentElement.classList.add('apop-open'); if (window.__lenis) window.__lenis.stop();
+      put('sanctum-apop', Date.now());
+    }, delay);
+  };
+  const closePop = () => { pop.classList.remove('on'); document.documentElement.classList.remove('apop-open'); if (window.__lenis) window.__lenis.start(); setTimeout(() => { pop.hidden = true; }, 500); };
+  if (pop) { pop.querySelectorAll('[data-apop-close]').forEach((b) => b.addEventListener('click', closePop)); addEventListener('keydown', (ev) => { if (ev.key === 'Escape' && !pop.hidden) closePop(); }); }
+  if (ck && !window.sanctumConsent) {
+    setTimeout(() => { ck.hidden = false; requestAnimationFrame(() => ck.classList.add('on')); document.documentElement.classList.add('ck-open'); }, 900);
+    ck.addEventListener('click', (ev) => {
+      const b = ev.target.closest('[data-ck]'); if (!b) return;
+      const a = ck.querySelector('[name=analytics]'), m = ck.querySelector('[name=marketing]');
+      const v = b.dataset.ck === 'all' ? [true, true] : b.dataset.ck === 'reject' ? [false, false] : [a.checked, m.checked];
+      window.sanctumConsent = { functional: true, analytics: v[0], marketing: v[1], ts: Date.now() };
+      put('sanctum-consent', window.sanctumConsent);
+      document.dispatchEvent(new CustomEvent('sanctum:consent', { detail: window.sanctumConsent }));
+      ck.classList.remove('on'); document.documentElement.classList.remove('ck-open'); setTimeout(() => { ck.hidden = true; }, 500);
+      showPop(2200);
+    });
+  } else showPop(5000);
 })();

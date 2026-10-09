@@ -92,6 +92,17 @@ ${body}
 </main>
 ${footer()}
 <div class="mbar"><a class="btn btn-primary" href="/classes/">Book a class</a><a class="btn btn-ghost" href="/memberships/">Membership</a></div>
+<div class="ck" role="dialog" aria-modal="false" aria-labelledby="ck-h" hidden><div class="ck-in">
+  <div class="ck-top"><strong id="ck-h">Our website uses cookies</strong><a class="ck-ov" href="/privacy/">Overview</a></div>
+  <p class="ck-txt">In order to remember your preferences (“Functional”), to measure traffic to our site (“Analytics”), and to personalise content and ads and enable social media features (“Marketing &amp; Social Media”), we use cookies and similar technologies. We also share information about your use of our website with our social media, analytics, and advertising partners, who may combine it with other information they have collected from your use of their services. You can change or withdraw your consent at any time.</p>
+  <div class="ck-opts"><label class="ck-sw"><input type="checkbox" checked disabled><i></i>Functional</label><label class="ck-sw"><input type="checkbox" name="analytics" checked><i></i>Analytics</label><label class="ck-sw"><input type="checkbox" name="marketing" checked><i></i>Marketing &amp; Social Media</label></div>
+  <div class="ck-btns"><button type="button" class="btn btn-ghost" data-ck="reject">Reject all</button><button type="button" class="btn btn-ghost" data-ck="save">Accept selection</button><button type="button" class="btn btn-primary" data-ck="all">Accept all</button></div>
+</div></div>
+<div class="apop" role="dialog" aria-modal="true" aria-labelledby="apop-h" hidden><div class="apop-bg" data-apop-close></div><div class="apop-card">
+  <button type="button" class="apop-x" data-apop-close aria-label="Close">&times;</button>
+  <div class="apop-img"><img src="https://images.convertbox.com/users/2970/62516e12ce55117e70371e0fb14c6dc4.png" alt="The Sanctum Digital app: Daily Practices, Activations and Meditations" loading="lazy" width="900" height="974"></div>
+  <div class="apop-body"><p class="kicker"><span class="dot"></span>Sanctum Digital</p><h2 id="apop-h">Anytime. <em>Anywhere.</em></h2><p>Welcome to Sanctum Digital — the world’s first immersive digital movement, now in your hands.</p>${storeBadges('apop-badges')}</div>
+</div></div>
 <script src="/assets/vendor/gsap.min.js" defer></script>
 <script src="/assets/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/vendor/lenis.min.js" defer></script>
