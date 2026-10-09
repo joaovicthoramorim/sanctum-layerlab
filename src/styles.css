@@ -924,3 +924,11 @@ a.prs:hover .prs-img img{transform:scale(1.05);filter:none}
   .mph-in::after{background:linear-gradient(0deg,rgba(7,6,5,.85),transparent 55%)}
   .mph figcaption{left:18px!important;right:18px!important;bottom:18px!important;font-size:1.45rem!important;line-height:1.1}
 }
+/* private bookings on mobile: experiences + featured as swipe carousels */
+@media (max-width:900px){
+  .pexp,.pfeat{display:flex!important;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin-left:-16px;margin-right:-16px;padding:6px 16px 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .pexp::-webkit-scrollbar,.pfeat::-webkit-scrollbar{display:none}
+  .pex{flex:0 0 84vw;scroll-snap-align:center;min-height:520px}
+  .pf{flex:0 0 84vw;scroll-snap-align:center;grid-template-columns:1fr!important}
+  .pf-media{min-height:220px}
+}
