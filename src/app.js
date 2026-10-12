@@ -72,6 +72,8 @@
   onScrollUI(window.scrollY);
 
 
+  /* below-the-fold sections: set up after the hero is interactive (keeps the main thread free at load) */
+  const initRest = () => {
   /* ---------- brand film: sound + scroll scale ---------- */
   const film = document.querySelector('.film');
   if (film) {
@@ -251,6 +253,11 @@
     });
   }
 
+    if (window.ScrollTrigger) ScrollTrigger.refresh();
+  };
+  const idle = (fn, t) => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: t }) : setTimeout(fn, 200));
+  if (document.querySelector('.journey')) { if (document.readyState === 'complete') idle(initRest, 1200); else addEventListener('load', () => idle(initRest, 1200), { once: true }); } else initRest();
+
   /* ---------- the 55-minute journey ---------- */
   const journey = document.querySelector('.journey');
   if (!journey) return;
@@ -294,10 +301,13 @@
   const order = [];
   [32, 16, 8, 4, 2, 1].forEach((s) => { for (let i = 0; i < N; i += s) if (!order.includes(i)) order.push(i); });
   load(0);
-  let qi = 0;
-  const pump = () => { let k = 0; while (qi < order.length && k < 6) { load(order[qi++]); k++; } if (qi < order.length) setTimeout(pump, 60); };
-  const start = () => setTimeout(pump, 50);
-  if ('requestIdleCallback' in window) requestIdleCallback(start, { timeout: 800 }); else start();
+  // coarse frames first (every 16th) once the page has loaded; the fine fill waits for the first scroll (or a few seconds)
+  let qi = 0, fine = false;
+  const coarseEnd = order.findIndex((i, k) => k > 0 && i % 16 !== 0);
+  const pump = () => { let k = 0; const lim = fine ? order.length : coarseEnd; while (qi < lim && k < 6) { load(order[qi++]); k++; } if (qi < lim) setTimeout(pump, 60); };
+  const goFine = () => { if (fine) return; fine = true; ['wheel', 'touchstart', 'keydown', 'scroll'].forEach((ev) => removeEventListener(ev, goFine)); pump(); };
+  const start = () => { pump(); ['wheel', 'touchstart', 'keydown', 'scroll'].forEach((ev) => addEventListener(ev, goFine, { passive: true, once: true })); setTimeout(goFine, 3500); };
+  if (document.readyState === 'complete') setTimeout(start, 50); else addEventListener('load', () => setTimeout(start, 50), { once: true });
 
   function nearest(i) {
     if (loaded[i]) return i;
@@ -428,7 +438,7 @@
   const closePop = () => { pop.classList.remove('on'); document.documentElement.classList.remove('apop-open'); if (window.__lenis) window.__lenis.start(); setTimeout(() => { pop.hidden = true; }, 500); };
   if (pop) { pop.querySelectorAll('[data-apop-close]').forEach((b) => b.addEventListener('click', closePop)); addEventListener('keydown', (ev) => { if (ev.key === 'Escape' && !pop.hidden) closePop(); }); }
   if (ck && !window.sanctumConsent) {
-    setTimeout(() => { ck.hidden = false; requestAnimationFrame(() => ck.classList.add('on')); document.documentElement.classList.add('ck-open'); }, 900);
+    document.documentElement.classList.add('ck-open');
     ck.addEventListener('click', (ev) => {
       const b = ev.target.closest('[data-ck]'); if (!b) return;
       const a = ck.querySelector('[name=analytics]'), m = ck.querySelector('[name=marketing]');
@@ -436,7 +446,7 @@
       window.sanctumConsent = { functional: true, analytics: v[0], marketing: v[1], ts: Date.now() };
       put('sanctum-consent', window.sanctumConsent);
       document.dispatchEvent(new CustomEvent('sanctum:consent', { detail: window.sanctumConsent }));
-      ck.classList.remove('on'); document.documentElement.classList.remove('ck-open'); setTimeout(() => { ck.hidden = true; }, 500);
+      ck.classList.add('out'); document.documentElement.classList.remove('ck-open'); setTimeout(() => { document.documentElement.classList.add('ck-done'); }, 500);
       showPop(2200);
     });
   } else showPop(5000);
