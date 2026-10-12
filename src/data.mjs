@@ -5,7 +5,7 @@ export const config = {
   brand: 'SANCTUM',
   // Site domain (single source): change in one place.
   domain: 'https://sanctumproject.netlify.app',
-  prototype: true, // adds noindex,nofollow everywhere + blocks crawlers in robots.txt
+  prototype: false, // true = noindex,nofollow everywhere + blocks crawlers in robots.txt
   booking: 'https://www.wearesanctum.com/daily-classes',
   appStore: 'https://apps.apple.com/app/id6757913161',
   playStore: 'https://play.google.com/store/apps/details?id=com.sanctum.android',

@@ -35,7 +35,7 @@ const waveSvg = `<svg class="divider" viewBox="0 0 1440 60" preserveAspectRatio=
 
 function layout({ path, title, desc, body, schema = [], image = '/assets/img/og.jpg', active = '' }) {
   const canon = abs(path);
-  const robots = C.prototype ? 'noindex,nofollow' : 'index,follow';
+  const robots = C.prototype ? 'noindex,nofollow' : (/thank-you|404/.test(path) ? 'noindex,follow' : 'index,follow,max-image-preview:large,max-snippet:-1');
   const nav = NAV.map(([h, l]) => `<a href="${h}"${active === h ? ' aria-current="page"' : ''}>${l}</a>`).join('');
   return `<!doctype html>
 <html lang="en" class="no-js">
