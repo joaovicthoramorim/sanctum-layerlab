@@ -425,20 +425,31 @@
   const put = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
   const ck = document.querySelector('.ck'), pop = document.querySelector('.apop');
   window.sanctumConsent = get('sanctum-consent');
-  const showPop = (delay) => {
+  // how far down the page the visitor is (0..1)
+  const depth = () => { const h = document.documentElement.scrollHeight - innerHeight; return h > 0 ? scrollY / h : 1; };
+  const whenReady = (minMs, minDepth, fn) => {
+    const t0 = Date.now(); let done = false;
+    const check = () => { if (done) return; if (Date.now() - t0 >= minMs && depth() >= minDepth) { done = true; removeEventListener('scroll', check); clearInterval(iv); fn(); } };
+    addEventListener('scroll', check, { passive: true }); const iv = setInterval(check, 1000);
+  };
+  const openPop = () => {
     if (!pop || /thank-you/.test(location.pathname)) return;
     const seen = get('sanctum-apop');
     if (seen && Date.now() - seen < 7 * 864e5) return;
-    setTimeout(() => {
-      pop.hidden = false; requestAnimationFrame(() => pop.classList.add('on'));
-      document.documentElement.classList.add('apop-open'); if (window.__lenis) window.__lenis.stop();
-      put('sanctum-apop', Date.now());
-    }, delay);
+    pop.hidden = false; requestAnimationFrame(() => pop.classList.add('on'));
+    document.documentElement.classList.add('apop-open'); if (window.__lenis) window.__lenis.stop();
+    put('sanctum-apop', Date.now());
   };
+  // app pop-up: only once the visitor is engaged (40 s on the page and past half of it)
+  const schedulePop = () => whenReady(40000, 0.5, openPop);
   const closePop = () => { pop.classList.remove('on'); document.documentElement.classList.remove('apop-open'); if (window.__lenis) window.__lenis.start(); setTimeout(() => { pop.hidden = true; }, 500); };
   if (pop) { pop.querySelectorAll('[data-apop-close]').forEach((b) => b.addEventListener('click', closePop)); addEventListener('keydown', (ev) => { if (ev.key === 'Escape' && !pop.hidden) closePop(); }); }
   if (ck && !window.sanctumConsent) {
-    document.documentElement.classList.add('ck-open');
+    // cookie banner: after the first impression (12 s, or once the visitor scrolls past the opening)
+    const showCk = () => { document.documentElement.classList.add('ck-show', 'ck-open'); };
+    const t0 = Date.now(); let shown = false;
+    const tryCk = () => { if (shown) return; const past = scrollY > innerHeight * (document.querySelector('.journey') ? 6 : 1.2); if (Date.now() - t0 > 12000 || (past && Date.now() - t0 > 4000)) { shown = true; removeEventListener('scroll', tryCk); clearInterval(ivc); showCk(); } };
+    addEventListener('scroll', tryCk, { passive: true }); const ivc = setInterval(tryCk, 1000);
     ck.addEventListener('click', (ev) => {
       const b = ev.target.closest('[data-ck]'); if (!b) return;
       const a = ck.querySelector('[name=analytics]'), m = ck.querySelector('[name=marketing]');
@@ -447,7 +458,7 @@
       put('sanctum-consent', window.sanctumConsent);
       document.dispatchEvent(new CustomEvent('sanctum:consent', { detail: window.sanctumConsent }));
       ck.classList.add('out'); document.documentElement.classList.remove('ck-open'); setTimeout(() => { document.documentElement.classList.add('ck-done'); }, 500);
-      showPop(2200);
+      schedulePop();
     });
-  } else showPop(5000);
+  } else schedulePop();
 })();
